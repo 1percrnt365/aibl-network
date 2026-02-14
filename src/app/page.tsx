@@ -10,8 +10,14 @@ export default function LandingPage() {
 
       {/* 내비게이션 */}
       <nav className="relative z-10 flex justify-between items-center p-6 max-w-7xl mx-auto border-b border-white/10 backdrop-blur-md">
-        <div className="text-2xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">
-          AIBL.NETWORK
+        <div className="flex items-center gap-2">
+          {/* 로고 이미지 적용 부분 */}
+          <img 
+            src="/AIBL.png" 
+            alt="AIBL Logo" 
+            className="h-10 w-auto object-contain" 
+            /* 높이를 10(40px)으로 설정하여 가독성을 높였습니다 */
+          />
         </div>
         <div className="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
           <a href="#vision" className="hover:text-white transition">Vision</a>
