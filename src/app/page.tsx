@@ -15,8 +15,8 @@ export default function LandingPage() {
           <img 
             src="/AIBL.png" 
             alt="AIBL Logo" 
-            className="h-10 w-auto object-contain" 
-            /* 높이를 10(40px)으로 설정하여 가독성을 높였습니다 */
+            className="h-20 w-auto object-contain" 
+            /* 높이를 20(80px)으로 설정하여 가독성을 높였습니다 */
           />
         </div>
         <div className="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
