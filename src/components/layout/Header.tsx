@@ -4,20 +4,20 @@ const Header = () => {
   return (
     <nav className="relative flex justify-between items-center px-8 py-6 max-w-7xl mx-auto border-b border-white/10 backdrop-blur-md w-full">
       {/* Left: Logo */}
-      <div className="flex items-center gap-2 z-10">
+      <Link href="/" className="flex items-center gap-2 z-10 hover:opacity-80 transition">
         <img 
           src="/AIBL.png" 
           alt="AIBL Logo" 
           className="h-10 w-auto object-contain" 
         />
         <span className="font-bold text-xl tracking-tight">AIBL Network</span>
-      </div>
+      </Link>
 
       {/* Center: Navigation (Absolute Positioned) */}
       <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden md:flex space-x-8 text-sm font-medium text-gray-400">
-        <a href="#vision" className="hover:text-white transition">Vision</a>
-        <a href="https://docs.aibl.network" className="hover:text-white transition">Docs</a>
-        <a href="#tokenomics" className="hover:text-white transition">Tokenomics</a>
+        <Link href="/vision" className="hover:text-white transition">Vision</Link>
+        <Link href="/docs" className="hover:text-white transition">Docs</Link>
+        <Link href="/tokenomics" className="hover:text-white transition">Tokenomics</Link>
       </div>
 
       {/* Right: CTA Button */}
