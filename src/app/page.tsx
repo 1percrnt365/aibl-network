@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import HeroSection from '@/components/homepage/HeroSection';
 import FeaturesSection from '@/components/homepage/FeaturesSection';
@@ -12,7 +11,6 @@ export default function LandingPage() {
       
       {/* Main content */}
       <div className="relative z-10 flex flex-col items-center">
-        <Header />
         
         <main className="w-full max-w-6xl mx-auto px-6 flex flex-col gap-24 py-20">
           <HeroSection />
