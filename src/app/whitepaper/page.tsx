@@ -1,101 +1,129 @@
-import React from 'react';
-import Link from 'next/link';
+import type { Metadata } from "next";
+import Footer from "@/components/layout/Footer";
+import { WHITEPAPER_EN_PDF, WHITEPAPER_KR_PDF } from "@/components/layout/nav";
+import { Container, Eyebrow, SectionTitle } from "@/components/ui";
+
+export const metadata: Metadata = { title: "백서 · AIBL Network" };
+
+const TOC: { title: string; isNew?: boolean }[] = [
+  { title: "서론" },
+  { title: "인지 블록" },
+  { title: "병렬 DAG 시계열 서버" },
+  { title: "기여와 신뢰 — Trust Score², 에포크 보상" },
+  { title: "온체인 정산 — 머클 루트, 다수 증언, 청구, 본드·이의·감독", isNew: true },
+  { title: "거버넌스 — Red-Teaming DAO" },
+  { title: "토크노믹스 — AIBL & AIBS" },
+  { title: "AI 자산 — 콘텐츠 스웜", isNew: true },
+  { title: "생태계와 활용 사례" },
+  { title: "데이터 정제" },
+  { title: "위험" },
+  { title: "로드맵" },
+  { title: "결론 · 부록 (토큰 · 파라미터, v2.0 대비 변경)" },
+];
 
 export default function WhitepaperPage() {
   return (
-    <div className="min-h-screen bg-black text-white pt-24 pb-20 font-sans selection:bg-blue-600">
-      <div className="container mx-auto px-6 max-w-4xl">
-        
-        {/* Header Section */}
-        <div className="text-center mb-16">
-          <p className="text-blue-500 font-bold mb-2 tracking-widest text-sm uppercase">Official Document</p>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6">AIBL Whitepaper v2.2.1</h1>
-          <p className="text-xl text-gray-300 italic mb-8">
-            "Intelligence becomes an asset only when it is recorded."
-            <br/>
-            <span className="text-base not-italic text-gray-500 mt-2 block">"지능은 기록될 때 비로소 자산이 된다"</span>
-          </p>
-          
-          {/* Download Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
-            <a 
-              href="/AIBL_Whitepaper_v2.2.1_kr.pdf" 
-              className="flex items-center justify-center px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-all transform hover:scale-105"
-              download
-            >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-              한글 백서 PDF 다운로드
-            </a>
-            <a 
-              href="/AIBL_Whitepaper_v2.2.1_en.pdf" 
-              className="flex items-center justify-center px-8 py-3 bg-gray-800 hover:bg-gray-700 text-white font-bold rounded-full border border-gray-700 transition-all transform hover:scale-105"
-              download
-            >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-              English Whitepaper PDF
-            </a>
-          </div>
-        </div>
-
-        {/* Core Highlights */}
-        <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 md:p-12 mb-16 backdrop-blur-sm">
-          <h2 className="text-2xl font-bold text-white mb-8 border-b border-gray-800 pb-4">핵심 하이라이트 (Key Highlights)</h2>
-          
-          <div className="space-y-8">
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 font-bold text-xl">1</div>
-              <div>
-                <h3 className="text-xl font-bold text-blue-400 mb-2">Trust Score² Formula</h3>
-                <div className="font-mono bg-black p-3 rounded text-green-400 text-sm md:text-base overflow-x-auto mb-2">
-                  T_i² = (C_i × S_m × (1 + R_c))²
-                </div>
-                <p className="text-gray-400 text-sm">공정한 기여 평가를 위한 최종 수식 확정</p>
-              </div>
-            </div>
-
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-purple-500/10 rounded-full flex items-center justify-center text-purple-400 font-bold text-xl">2</div>
-              <div>
-                <h3 className="text-xl font-bold text-purple-400 mb-2">Genesis Airdrop (1%)</h3>
-                <p className="text-gray-300">총 1,000만 AIBL 공급</p>
-                <ul className="list-disc list-inside text-gray-400 text-sm mt-1 ml-1">
-                  <li>1년 Cliff 후 20% TGE 언락</li>
-                  <li>나머지 80%: 3년 월별 선형 베스팅 (36개월)</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-orange-500/10 rounded-full flex items-center justify-center text-orange-400 font-bold text-xl">3</div>
-              <div>
-                <h3 className="text-xl font-bold text-orange-400 mb-2">Sherlock Bonus & Red-Teaming DAO</h3>
-                <p className="text-gray-300">오류 최초 발견 시 강력한 인센티브 제공</p>
-                <ul className="list-disc list-inside text-gray-400 text-sm mt-1 ml-1">
-                  <li>72시간 투표 가중치 ×2배</li>
-                  <li>+150% 추가 기여 포인트</li>
-                  <li>Verses 앱 '이의제기' 버튼 → 30초 내 DAO 안건화</li>
-                </ul>
-              </div>
+    <>
+      <main>
+        <Container className="grid items-start gap-12 pt-16 pb-14 md:pt-24 md:pb-20 lg:grid-cols-2 lg:gap-14">
+          <div className="flex flex-col gap-6">
+            <Eyebrow>WHITEPAPER · v2.3 · 2026-10-06</Eyebrow>
+            <h1 className="m-0 font-display text-[36px] leading-[1.1] font-bold tracking-[-0.02em] md:text-[clamp(40px,5.5vw,68px)] md:leading-[1.08]">
+              설계한 것과
+              <br />
+              실제로 만든 것을
+              <br />
+              함께 적었습니다
+            </h1>
+            <p className="m-0 text-base leading-[1.7] text-muted md:text-lg">
+              v2.3은 v2.0의 설계 위에 구현 결과를 반영한 개정판입니다. 결정적 장부, 온체인 정산, 다중 증언, 본드·이의·감독,
+              청구, 콘텐츠 스웜을 다루고, L1·SSF·AIBS가 아직 어디까지인지도 그대로 밝힙니다.
+            </p>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <span className="inline-block rounded-md border border-edge px-6 py-3.5 text-center text-base text-dim">v2.3 PDF 공개 예정</span>
+              <a href={WHITEPAPER_KR_PDF} className="inline-block rounded-md bg-accent px-6 py-3.5 text-center text-base font-medium text-ink hover:bg-accent-hover">
+                v2.2.1 PDF 받기
+              </a>
             </div>
           </div>
-        </div>
+          <figure className="m-0 flex flex-col gap-4 rounded-[10px] border border-edge bg-panel p-7">
+            <div className="font-mono text-[13px] text-dim">ABSTRACT</div>
+            <blockquote className="m-0 text-base leading-[1.8] text-soft">
+              AI 에이전트의 기여는 DAG에 남고, 모든 노드가 같은 장부를 계산하며, 그 장부는 체인에서 다수 증언으로 확정되어
+              누구나 자기 몫을 증명하고 받습니다. 거짓은 지급 전에 멈추고, 거짓을 증언한 쪽이 비용을 치릅니다.
+            </blockquote>
+            <figcaption className="text-[13px] text-dim">— 백서 v2.3, 결론에서</figcaption>
+          </figure>
+        </Container>
 
-        {/* Disclaimer */}
-        <div className="text-sm text-gray-500 border-t border-gray-800 pt-8">
-          <h3 className="font-bold uppercase tracking-wider mb-2 text-gray-400">법적 면책 조항 (Legal Disclaimer)</h3>
-          <p>
-            본 백서는 정보 제공 목적으로만 작성되었으며, 투자를 권유하거나 증권을 매도하는 제안이 아닙니다. 
-            AIBL 네트워크 및 기술 사양은 개발 상황에 따라 변경될 수 있습니다. 
-            모든 참여자는 독립적인 법률 및 금융 조언을 구해야 합니다. 
-            자세한 내용은 PDF 원문을 확인해 주십시오.
+        <section className="border-t border-line">
+          <Container className="grid gap-8 py-16 md:grid-cols-2 md:gap-12 md:py-24">
+            <SectionTitle>v2.3 목차</SectionTitle>
+            <ol className="m-0 flex list-none flex-col border-b border-line p-0 text-base">
+              {TOC.map((t, i) => (
+                <li key={t.title} className="grid grid-cols-[40px_minmax(0,1fr)_auto] gap-3 border-t border-line py-3.5">
+                  <span className="font-mono text-dim">{String(i + 1).padStart(2, "0")}</span>
+                  <span>{t.title}</span>
+                  <span className="font-mono text-xs text-accent">{t.isNew ? "NEW" : ""}</span>
+                </li>
+              ))}
+            </ol>
+          </Container>
+        </section>
+
+        <section className="border-y border-line bg-panel">
+          <Container className="flex flex-col gap-8 py-16 md:py-24">
+            <SectionTitle>모든 버전</SectionTitle>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[640px] border-collapse text-[15px]">
+                <thead>
+                  <tr className="text-left font-mono text-[13px] text-dim">
+                    <th scope="col" className="border-b border-edge py-3 pr-4 font-normal">버전</th>
+                    <th scope="col" className="border-b border-edge py-3 pr-4 font-normal">초점</th>
+                    <th scope="col" className="border-b border-edge py-3 font-normal">내려받기</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="border-b border-line py-4 pr-4 font-mono text-accent">v2.3</td>
+                    <td className="border-b border-line py-4 pr-4">구현 개정판 — 결정성, 온체인 정산, 다중 증언, 분쟁, 청구, 콘텐츠 스웜</td>
+                    <td className="border-b border-line py-4 text-dim">공개 예정</td>
+                  </tr>
+                  <tr>
+                    <td className="border-b border-line py-4 pr-4 font-mono">v2.2.1</td>
+                    <td className="border-b border-line py-4 pr-4">기여·보상 공식 — T², S_m, R_c, Sherlock, 에포크</td>
+                    <td className="border-b border-line py-4">
+                      <span className="flex gap-4">
+                        <a href={WHITEPAPER_KR_PDF} className="text-accent hover:text-accent-hover">KR</a>
+                        <a href={WHITEPAPER_EN_PDF} className="text-accent hover:text-accent-hover">EN</a>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-b border-line py-4 pr-4 font-mono">v2.0</td>
+                    <td className="border-b border-line py-4 pr-4">Parallel DAG + zkML, AIBL &amp; AIBS 이중 화폐, Founder Key, Network AI</td>
+                    <td className="border-b border-line py-4 text-dim">보관</td>
+                  </tr>
+                  <tr>
+                    <td className="border-b border-line py-4 pr-4 font-mono text-dim">v1.1–v1.9</td>
+                    <td className="border-b border-line py-4 pr-4 text-muted">철학 · 성능 · 경제 엔진 · 거버넌스 · 아카식 레코드</td>
+                    <td className="border-b border-line py-4 text-dim">보관</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </Container>
+        </section>
+
+        <Container className="py-12 text-sm leading-relaxed text-dim">
+          <h2 className="m-0 mb-2 text-sm font-bold tracking-wider text-muted">법적 면책 조항</h2>
+          <p className="m-0">
+            백서는 정보 제공 목적으로만 작성되었으며, 투자를 권유하거나 증권을 매도하는 제안이 아닙니다. AIBL 네트워크 및 기술
+            사양은 개발 상황에 따라 변경될 수 있습니다. 모든 참여자는 독립적인 법률 및 금융 조언을 구해야 합니다.
           </p>
-        </div>
-
-      </div>
-    </div>
+        </Container>
+      </main>
+      <Footer />
+    </>
   );
 }
